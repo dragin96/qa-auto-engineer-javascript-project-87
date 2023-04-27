@@ -4,7 +4,8 @@
   "description": "[![Actions Status](https://github.com/dragin96/qa-auto-engineer-javascript-project-87/workflows/hexlet-check/badge.svg)](https://github.com/dragin96/qa-auto-engineer-javascript-project-87/actions)",
   "main": "bin/gendiff.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "lint": "eslint {__tests__,bin}/**/*.js --fix"
   },
   "repository": {
     "type": "git",
@@ -22,5 +23,11 @@
   "homepage": "https://github.com/dragin96/qa-auto-engineer-javascript-project-87#readme",
   "dependencies": {
     "commander": "^10.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.39.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "jest": "^29.5.0"
   }
 }
