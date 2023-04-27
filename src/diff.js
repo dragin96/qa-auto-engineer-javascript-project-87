@@ -1,6 +1,4 @@
-export function diff(jsonFile1, jsonFile2) {
-  const obj1 = JSON.parse(jsonFile1);
-  const obj2 = JSON.parse(jsonFile2);
+export const jsonDiff = (obj1, obj2) => {
   const keys1 = Object.keys(obj1);
   const keys2 = Object.keys(obj2);
   const allKeys = new Set([...keys1, ...keys2]);
