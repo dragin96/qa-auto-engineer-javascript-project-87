@@ -2,13 +2,16 @@
   "name": "@hexlet/code",
   "version": "1.0.0",
   "description": "[![Actions Status](https://github.com/dragin96/qa-auto-engineer-javascript-project-87/workflows/hexlet-check/badge.svg)](https://github.com/dragin96/qa-auto-engineer-javascript-project-87/actions)",
-  "main": "index.js",
+  "main": "bin/gendiff.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dragin96/qa-auto-engineer-javascript-project-87.git"
+  },
+  "bin": {
+    "gendiff": "./bin/gendiff.js"
   },
   "type": "module",
   "author": "dragin96",
