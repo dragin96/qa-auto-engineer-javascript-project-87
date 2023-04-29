@@ -4,6 +4,7 @@
   "description": "[![Actions Status](https://github.com/dragin96/qa-auto-engineer-javascript-project-87/workflows/hexlet-check/badge.svg)](https://github.com/dragin96/qa-auto-engineer-javascript-project-87/actions)",
   "main": "bin/gendiff.js",
   "scripts": {
+    "run": " node bin/gendiff.js testData/file1.yml testData/file2.yml --format plain",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "lint": "eslint {__tests__,bin}/**/*.js --fix"
   },
