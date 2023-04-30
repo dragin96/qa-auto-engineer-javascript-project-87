@@ -19,6 +19,6 @@ export const jsonFormater = (tree) => {
       acc[el.key] = jsonFormater(el.children);
       return acc;
     }
-  }, {})
+  }, {});
   return JSON.stringify(json, null, 2);
 }
