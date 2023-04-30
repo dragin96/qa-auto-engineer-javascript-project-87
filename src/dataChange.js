@@ -1,20 +1,44 @@
+import { isObject } from './untils/isObject.js';
+
 export const getDataChange = (obj1, obj2) => {
   const keys1 = Object.keys(obj1);
   const keys2 = Object.keys(obj2);
   const allKeys = new Set([...keys1, ...keys2]);
   const sortedKeys = Array.from(allKeys).sort();
   return sortedKeys.map((key) => {
-    if(!obj1.hasOwnProperty(key)){
-      return {key: key, value: obj2[key], type: 'added'};
+    if (isObject(obj1[key]) && isObject(obj2[key])) {
+      return {
+        key,
+        type: 'nested',
+        children: getDataChange(obj1[key], obj2[key]),
+      };
     }
-    if(!obj2.hasOwnProperty(key)){
-      return {key: key, value: obj1[key], type: 'deleted'};
+    if (!keys1.includes(key) && keys2.includes(key)) {
+      return {
+        key,
+        type: 'added',
+        value: obj2[key],
+      };
     }
-    if(obj1.hasOwnProperty(key) && obj2.hasOwnProperty(key) && obj1[key] === obj2[key]){
-      return {key: key, value: obj1[key], type: 'unchanged'};
+    if (keys1.includes(key) && !keys2.includes(key)) {
+      return {
+        key,
+        type: 'deleted',
+        value: obj1[key],
+      };
     }
-    if(obj1.hasOwnProperty(key) && obj2.hasOwnProperty(key) && obj1[key] !== obj2[key]){
-      return {key: key, value: obj2[key], oldValue: obj1[key], type: 'changed'};
+    if (obj1[key] !== obj2[key]) {
+      return {
+        key,
+        type: 'changed',
+        oldValue: obj1[key],
+        value: obj2[key],
+      };
+    }
+    return {
+      key,
+      type: 'unchanged',
+      value: obj1[key],
     }
   });
 }

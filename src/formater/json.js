@@ -15,6 +15,10 @@ export const jsonFormater = (tree) => {
       acc[el.key] = el.value;
       return acc;
     }
+    if(el.type === 'nested') {
+      acc[el.key] = jsonFormater(el.children);
+      return acc;
+    }
   }, {})
   return JSON.stringify(json, null, 2);
 }
