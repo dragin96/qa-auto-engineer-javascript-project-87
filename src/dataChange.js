@@ -2,6 +2,7 @@ export default (obj1, obj2) => {
   const keys1 = Object.keys(obj1);
   const keys2 = Object.keys(obj2);
   const allKeys = new Set([...keys1, ...keys2]);
+  // eslint-disable-next-line fp/no-mutating-methods
   const sortedKeys = [...allKeys].sort();
   return sortedKeys.map((key) => {
     if (!keys1.includes(key) && keys2.includes(key)) {
