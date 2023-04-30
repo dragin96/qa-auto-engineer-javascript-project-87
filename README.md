@@ -10,4 +10,5 @@ $ npm install
 $ node bin/genDiff.js filepath1 filepath2
 $ npm publish --dry-run
 ```
-[![asciicast](https://asciinema.org/a/URR2MtpoMViMnxxpeSnsMxZXk.svg)](https://asciinema.org/a/URR2MtpoMViMnxxpeSnsMxZXk)
+### Example
+[![asciicast](https://asciinema.org/a/fSaPeiT6g0lGXpDk1Hw5Gq9Fj.svg)](https://asciinema.org/a/fSaPeiT6g0lGXpDk1Hw5Gq9Fj)

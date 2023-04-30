@@ -1,62 +1,21 @@
-import getDataChange from '../src/dataChange.js';
+import { fileURLToPath } from 'url';
+import path, { dirname } from 'path';
+import fs from 'fs';
+import generateDiffs from '../src/index.js';
 
-describe('getDataChange', () => {
-  test('returns empty array if both objects are empty', () => {
-    const obj1 = {};
-    const obj2 = {};
-    const result = getDataChange(obj1, obj2);
-    expect(result).toEqual([]);
-  });
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
-  test('returns array with "added" type for new property', () => {
-    const obj1 = { a: 1 };
-    const obj2 = { a: 1, b: 2 };
-    const result = getDataChange(obj1, obj2);
-    expect(result).toEqual([
-      { key: 'a', type: 'unchanged', value: 1 },
-      { key: 'b', type: 'added', value: 2 },
-    ]);
-  });
+const getFixturePath = (filename) => path.join(__dirname, '__fixture__', filename);
+const readFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
+const expectedStylish = readFile('expected.txt');
+const expectedPlain = readFile('expectedPlain.txt');
+const expectedJson = readFile('expectedJson.txt');
 
-  test('returns array with "deleted" type for removed property', () => {
-    const obj1 = { a: 1, b: 2 };
-    const obj2 = { a: 1 };
-    const result = getDataChange(obj1, obj2);
-    expect(result).toEqual([
-      { key: 'a', type: 'unchanged', value: 1 },
-      { key: 'b', type: 'deleted', value: 2 },
-    ]);
-  });
-
-  test('returns array with "changed" type for changed property', () => {
-    const obj1 = { a: 1, b: 2 };
-    const obj2 = { a: 1, b: 3 };
-    const result = getDataChange(obj1, obj2);
-    expect(result).toEqual([
-      { key: 'a', type: 'unchanged', value: 1 },
-      {
-        key: 'b', type: 'changed', oldValue: 2, value: 3,
-      },
-    ]);
-  });
-
-  test('returns array with "nested" type for nested objects', () => {
-    const obj1 = { a: { b: 1 } };
-    const obj2 = { a: { b: 2 } };
-    const result = getDataChange(obj1, obj2);
-    expect(result).toEqual([{
-      key: 'a',
-      type: 'nested',
-      children: [{
-        key: 'b', type: 'changed', oldValue: 1, value: 2,
-      }],
-    }]);
-  });
-
-  test('returns array with "unchanged" type for unchanged property', () => {
-    const obj1 = { a: 1 };
-    const obj2 = { a: 1 };
-    const result = getDataChange(obj1, obj2);
-    expect(result).toEqual([{ key: 'a', type: 'unchanged', value: 1 }]);
-  });
+test.each(['json', 'yml'])('%s test', (format) => {
+  const file1 = getFixturePath(`file1.${format}`);
+  const file2 = getFixturePath(`file2.${format}`);
+  expect(generateDiffs(file1, file2, 'stylish')).toEqual(expectedStylish);
+  expect(generateDiffs(file1, file2, 'plain')).toEqual(expectedPlain);
+  expect(generateDiffs(file1, file2, 'json')).toEqual(expectedJson);
 });
