@@ -1,6 +1,6 @@
-import { isObject } from './untils/isObject.js';
+import isObject from './untils/isObject.js';
 
-export const getDataChange = (obj1, obj2) => {
+export default (obj1, obj2) => {
   const keys1 = Object.keys(obj1);
   const keys2 = Object.keys(obj2);
   const allKeys = new Set([...keys1, ...keys2]);

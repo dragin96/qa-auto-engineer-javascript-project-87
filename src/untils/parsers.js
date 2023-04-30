@@ -6,7 +6,7 @@ const objParsers = {
   yaml: YAML.parse,
 };
 
-export const parser = (data, format) => {
+export default (data, format) => {
   if (!objParsers[format]) {
     throw new Error(`Unknown format: ${format}`);
   }

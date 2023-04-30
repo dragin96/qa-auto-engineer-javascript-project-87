@@ -1,4 +1,4 @@
-export const plain = (tree) => tree.reduce((acc, el) => {
+export default (tree) => tree.reduce((acc, el) => {
   switch (el.type) {
     case 'added':
       return [...acc, `Property '${el.key}' was added with value: ${el.value}`];

@@ -1,8 +1,8 @@
 import fs from 'fs';
 import { getFormat, getFullPath } from './untils/path.js';
-import { parser } from './untils/parsers.js';
-import { getFormaterData } from './formater/index.js';
-import { getDataChange } from './dataChange.js';
+import parser from './untils/parsers.js';
+import getFormaterData from './formater/index.js';
+import getDataChange from './dataChange.js';
 
 export default (filepath1, filepath2, formatName) => {
   const fullPathFile1 = getFullPath(filepath1);

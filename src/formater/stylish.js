@@ -1,4 +1,4 @@
-import { isObject } from '../untils/isObject.js';
+import isObject from '../untils/isObject.js';
 
 const setTab = (depth) => '  '.repeat((depth * 2) - 2);
 const renderObject = (obj, depth) => {
@@ -18,7 +18,7 @@ const renderType = {
   nested: (node, depth, iter) => `${setTab(depth)}    ${node.key}: ${iter(node.children, depth + 1)}`,
 };
 
-export const stylishFormater = (tree) => {
+export default (tree) => {
   const iter = (node, depth) => {
     const dataToString = node.flatMap((elem) => renderType[elem.type](elem, depth, iter));
     return `{\n${dataToString.join('\n')}\n${setTab(depth)}}`;

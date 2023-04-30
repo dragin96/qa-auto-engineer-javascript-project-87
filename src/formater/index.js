@@ -1,6 +1,6 @@
-import { plain } from './plain.js';
-import { stylishFormater } from './stylish.js';
-import { jsonFormater } from './json.js';
+import plain from './plain.js';
+import stylishFormater from './stylish.js';
+import jsonFormater from './json.js';
 
 const formater = {
   stylish: stylishFormater,
@@ -8,7 +8,7 @@ const formater = {
   json: jsonFormater,
 };
 
-export const getFormaterData = (tree, format = 'stylish') => {
+export default (tree, format = 'stylish') => {
   if (!formater[format]) {
     throw new Error(`Unknown format: ${format}`);
   }

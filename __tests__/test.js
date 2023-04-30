@@ -1,4 +1,4 @@
-import { getDataChange } from '../src/dataChange.js';
+import getDataChange from '../src/dataChange.js';
 
 describe('getDataChange', () => {
   test('returns empty array if both objects are empty', () => {

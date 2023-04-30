@@ -12,3 +12,5 @@ export const getFormat = (filepath) => {
   const ext = path.extname(filepath);
   return ext.slice(1);
 };
+
+export default { getFullPath, getFormat };
