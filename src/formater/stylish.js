@@ -24,5 +24,5 @@ export const stylishFormater = (tree) => {
     const dataToString = node.flatMap((elem) => renderType[elem.type](elem, depth, iter));
     return `{\n${dataToString.join('\n')}\n${setTab(depth)}}`;
   };
-  return iter(tree, 1)+`\n`;
+  return iter(tree, 1);
 }
