@@ -1,17 +1,16 @@
 export const plain = (tree) => {
-  return tree.map((acc, el) => {
-    if (el.type === 'added') {
-      acc = [...acc, `Property '${el.key}' was added with value: ${el.value}`];
+  return tree.reduce((acc, el) => {
+    switch (el.type) {
+      case 'added':
+        return [...acc, `Property '${el.key}' was added with value: ${el.value}`];
+      case 'deleted':
+        return [...acc, `Property '${el.key}' was removed`];
+      case 'changed':
+        return [...acc, `Property '${el.key}' was updated. From ${el.oldValue} to ${el.value}`];
+      case 'unchanged':
+        return acc;
+      case 'nested':
+        return [...acc, plain(el.children)];
     }
-    if (el.type === 'deleted') {
-      acc = [...acc, `Property '${el.key}' was removed`];
-    }
-    if (el.type === 'changed') {
-      acc = [...acc, `Property '${el.key}' was updated. From ${el.oldValue} to ${el.value}`];
-    }
-    if (el.type === 'unchanged') {
-      return acc;
-    }
-    return acc;
-  }, '').join('\n');
+  }, []).join('\n');
 }
