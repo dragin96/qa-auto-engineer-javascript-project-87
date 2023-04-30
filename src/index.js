@@ -4,7 +4,7 @@ import { parser } from './untils/parsers.js';
 import { getFormaterData } from './formater/index.js';
 import { getDataChange } from './dataChange.js';
 
-export const genDiff = (filepath1, filepath2, formatName) => {
+export default (filepath1, filepath2, formatName) => {
   const fullPathFile1 = getFullPath(filepath1);
   const fullPathFile2 = getFullPath(filepath2);
   const jsonFile1 = fs.readFileSync(fullPathFile1, 'utf-8');

@@ -2,7 +2,7 @@
   "name": "@hexlet/code",
   "version": "1.0.0",
   "description": "[![Actions Status](https://github.com/dragin96/qa-auto-engineer-javascript-project-87/workflows/hexlet-check/badge.svg)](https://github.com/dragin96/qa-auto-engineer-javascript-project-87/actions)",
-  "main": "./bin/gendiff.js",
+  "main": "./src/index.js",
   "scripts": {
     "run": " node bin/gendiff.js __tests__/__fixture__/file1.json __tests__/__fixture__/file2.json",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --colors --runInBand --bail",
