@@ -3,21 +3,20 @@ import { isObject } from '../untils/isObject.js';
 const setTab = (depth) => '  '.repeat((depth * 2) - 2);
 const renderObject = (obj, depth) => {
   if (!isObject(obj)) return obj;
-  const objectToString = Object.entries(obj).map(([key, value]) =>
-    `${setTab(depth + 1)}${key}: ${renderObject(value, depth + 1)}`);
+  const objectToString = Object.entries(obj).map(([key, value]) => `${setTab(depth + 1)}${key}: ${renderObject(value, depth + 1)}`);
   return `{\n${objectToString.join('\n')}\n${setTab(depth)}}`;
-}
+};
 
 const renderType = {
-  added: (node, depth) => `${setTab(depth)}  + ${node.key}: ${renderObject(node.value, depth+1)}`,
-  deleted: (node, depth) => `${setTab(depth)}  - ${node.key}: ${renderObject(node.value, depth+1)}`,
+  added: (node, depth) => `${setTab(depth)}  + ${node.key}: ${renderObject(node.value, depth + 1)}`,
+  deleted: (node, depth) => `${setTab(depth)}  - ${node.key}: ${renderObject(node.value, depth + 1)}`,
   changed: (node, depth) => [
     `${setTab(depth)}  - ${node.key}: ${renderObject(node.oldValue, depth)}`,
     `${setTab(depth)}  + ${node.key}: ${renderObject(node.value, depth)}`,
   ],
-  unchanged: (node, depth) => `${setTab(depth)}    ${node.key}: ${renderObject(node.value, depth+1)}`,
+  unchanged: (node, depth) => `${setTab(depth)}    ${node.key}: ${renderObject(node.value, depth + 1)}`,
   nested: (node, depth, iter) => `${setTab(depth)}    ${node.key}: ${iter(node.children, depth + 1)}`,
-}
+};
 
 export const stylishFormater = (tree) => {
   const iter = (node, depth) => {
@@ -25,4 +24,4 @@ export const stylishFormater = (tree) => {
     return `{\n${dataToString.join('\n')}\n${setTab(depth)}}`;
   };
   return iter(tree, 1);
-}
+};

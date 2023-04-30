@@ -6,9 +6,9 @@ export const getFullPath = (filepath) => {
     return filepath;
   }
   return path.resolve(process.cwd(), filepath);
-}
+};
 
 export const getFormat = (filepath) => {
   const ext = path.extname(filepath);
   return ext.slice(1);
-}
+};

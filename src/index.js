@@ -12,5 +12,5 @@ export default (filepath1, filepath2, formatName) => {
   const parserFile1 = parser(jsonFile1, getFormat(fullPathFile1));
   const parserFile2 = parser(jsonFile2, getFormat(fullPathFile2));
   const dataChange = getDataChange(parserFile1, parserFile2);
-  return getFormaterData(formatName, dataChange);
-}
+  return getFormaterData(dataChange, formatName);
+};

@@ -14,7 +14,7 @@ describe('getDataChange', () => {
     const result = getDataChange(obj1, obj2);
     expect(result).toEqual([
       { key: 'a', type: 'unchanged', value: 1 },
-      { key: 'b', type: 'added', value: 2 }
+      { key: 'b', type: 'added', value: 2 },
     ]);
   });
 
@@ -24,7 +24,7 @@ describe('getDataChange', () => {
     const result = getDataChange(obj1, obj2);
     expect(result).toEqual([
       { key: 'a', type: 'unchanged', value: 1 },
-      { key: 'b', type: 'deleted', value: 2 }
+      { key: 'b', type: 'deleted', value: 2 },
     ]);
   });
 
@@ -33,8 +33,10 @@ describe('getDataChange', () => {
     const obj2 = { a: 1, b: 3 };
     const result = getDataChange(obj1, obj2);
     expect(result).toEqual([
-      { key: 'a', type: 'unchanged', value: 1},
-      { key: 'b', type: 'changed', oldValue: 2, value: 3 }
+      { key: 'a', type: 'unchanged', value: 1 },
+      {
+        key: 'b', type: 'changed', oldValue: 2, value: 3,
+      },
     ]);
   });
 
@@ -42,7 +44,13 @@ describe('getDataChange', () => {
     const obj1 = { a: { b: 1 } };
     const obj2 = { a: { b: 2 } };
     const result = getDataChange(obj1, obj2);
-    expect(result).toEqual([{ key: 'a', type: 'nested', children: [{ key: 'b', type: 'changed', oldValue: 1, value: 2 }] }]);
+    expect(result).toEqual([{
+      key: 'a',
+      type: 'nested',
+      children: [{
+        key: 'b', type: 'changed', oldValue: 1, value: 2,
+      }],
+    }]);
   });
 
   test('returns array with "unchanged" type for unchanged property', () => {

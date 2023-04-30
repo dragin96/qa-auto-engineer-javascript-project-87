@@ -39,6 +39,6 @@ export const getDataChange = (obj1, obj2) => {
       key,
       type: 'unchanged',
       value: obj1[key],
-    }
+    };
   });
-}
+};
