@@ -9,7 +9,7 @@ const formater = {
   json: jsonFormater,
 }
 
-export const getFormaterData = (format, tree) => {
+export const getFormaterData = (format="stylish", tree) => {
   if (!formater[format]) {
     throw new Error(`Unknown format: ${format}`);
   }
