@@ -1,18 +1,9 @@
-import isObject from './untils/isObject.js';
-
 export default (obj1, obj2) => {
   const keys1 = Object.keys(obj1);
   const keys2 = Object.keys(obj2);
   const allKeys = new Set([...keys1, ...keys2]);
-  const sortedKeys = Array.from(allKeys).sort();
+  const sortedKeys = [...allKeys].sort();
   return sortedKeys.map((key) => {
-    if (isObject(obj1[key]) && isObject(obj2[key])) {
-      return {
-        key,
-        type: 'nested',
-        children: getDataChange(obj1[key], obj2[key]),
-      };
-    }
     if (!keys1.includes(key) && keys2.includes(key)) {
       return {
         key,

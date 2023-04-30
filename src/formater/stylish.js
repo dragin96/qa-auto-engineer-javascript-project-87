@@ -15,7 +15,6 @@ const renderType = {
     `${setTab(depth)}  + ${node.key}: ${renderObject(node.value, depth)}`,
   ],
   unchanged: (node, depth) => `${setTab(depth)}    ${node.key}: ${renderObject(node.value, depth + 1)}`,
-  nested: (node, depth, iter) => `${setTab(depth)}    ${node.key}: ${iter(node.children, depth + 1)}`,
 };
 
 export default (tree) => {

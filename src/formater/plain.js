@@ -8,8 +8,6 @@ export default (tree) => tree.reduce((acc, el) => {
       return [...acc, `Property '${el.key}' was updated. From ${el.oldValue} to ${el.value}`];
     case 'unchanged':
       return acc;
-    case 'nested':
-      return [...acc, plain(el.children)];
     default:
       throw new Error(`Unknown type: ${el.type}`);
   }
